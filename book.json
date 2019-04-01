@@ -2,7 +2,14 @@
   "gitbook": "3.x.x",
 	"title": "Contract-First workshop",
   "plugins": ["prism", "-highlight", "github", "ga"],
-	
+	"pluginsConfig": {
+		"github": {
+			"url": "https://github.com/primashah/workshop.github.io.git"
+		},
+		"ga": {
+				"token": "UA-105153875-1"
+		}
+	},
 	"theme-default": {
 		"showLevel": true
 	}
