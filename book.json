@@ -1,0 +1,9 @@
+{
+  "gitbook": "3.x.x",
+	"title": "Contract-First workshop",
+  "plugins": ["prism", "-highlight", "github", "ga"],
+	
+	"theme-default": {
+		"showLevel": true
+	}
+}
