@@ -173,5 +173,5 @@ NOTE: Following TDD approach, we should create the tests first and development s
     });
 
     ```
-10. asdsad
+10. Run `npm run test` and see how all the tests.
 
