@@ -54,7 +54,9 @@ To start this step you need to accomplish the Workshop step1 section. The soluti
   import { asyncHandler } from "../lib/asyncHandler";
   ```
     * We need to add the controllers. the following guide only covers the creation of the first controller, the following ones are going to be created by the students.
-4. Create the getItemsHandler.ts at `src/controllers`.
+
+5. To complete the next step, the server already contains an ItemDao located at `src/dao` and models at `src/models` to simulate the storage of the items.
+6. Create the getItemsHandler.ts at `src/controllers`.
    * Set the following code:
     ```javasript
       import { Request, Response } from "express";
@@ -67,10 +69,10 @@ To start this step you need to accomplish the Workshop step1 section. The soluti
       const itemDao = ItemDAO.getInstance();
 
       export async function getItemsHandler(req: Request, res: Response): P<any> {
-          debug.log("getItemsHandler start");
-          const items = itemDao.getItems();
-          res.send(items);
-          debug.log("getItemsHandler end");
+      debug.log("getItemsHandler start");
+      const items = itemDao.getItems();
+      res.send(items);
+      debug.log("getItemsHandler end");
       }
     ```
 
@@ -78,6 +80,98 @@ To start this step you need to accomplish the Workshop step1 section. The soluti
       ```javascript
         export const getItems  = Router().use("/", asyncHandler(getItemsHandler, "getItems"));
       ```
-5. start the server again and see how, errors doesn't appear and you are able to retrieve the list of items (now you will receive an empty array of Items).
-6. Implement the rest of the endpoints. The solution is available at step2 branch.
+    * Note: All the parameters and body objects are available in the `req.swagger.params.xxx.value` attribute.
+7. start the server again and see how, errors doesn't appear and you are able to retrieve the list of items (now you will receive an empty array of Items).
+8. Implement the rest of the endpoints. The solution is available at step2 branch.
+
+# Workshop step3
+We have the service running, but there is one thing left. TESTS!!!! in order to have a reliable service and have less error, we need to include unit tests.
+1. We can do 2 kind of tests. Check the endpoints using `chai-http` and test the controllers itself(Not covered in this workshop). It would be nice if we prepare the test for the `ItemDAO`.
+2. This workshop shows the creation of the test for one of the endpoints. Students will need to create the rest of the endpoints tests. The solution is available at `step3` branch.
+3. Create the `item.route.spec.ts` in `test/routes`.
+4. Add the following data inside:
+   ```javascript
+    import chaiHttp = require("chai-http");
+    import app from "../../src/application";
+    import { ItemDAO } from "../../src/dao/item.dao";
+    import * as chai from "chai";
+
+    const expect = chai.expect;
+    chai.use(chaiHttp);
+    describe("ItemRoute - Test ItemRoute endpoints", function () {
+        it("getItems - Should retrieve and empty Array", (done: () => void): void => {
+            chai.request(app)
+                .get("/api/v1/items")
+                .set("content-type", "application/json")
+                .send({})
+                .end((err: Error, res: any): void => {
+                    expect(res.statusCode).to.be.equal(200);
+                    expect(res.body.length).to.be.equal(0);
+                    done();
+                });
+        });
+        it("getItems - Should retrieve and Item Array with one Item", (done: () => void): void => {
+          const itemDAO = ItemDAO.getInstance();
+          itemDAO.addItem({"description": "Description", name: "Name", id: "id"});
+          chai.request(app)
+              .get("/api/v1/items")
+              .set("content-type", "application/json")
+              .send({})
+              .end((err: Error, res: any): void => {
+                  expect(res.statusCode).to.be.equal(200);
+                  expect(res.body.length).to.be.equal(1);
+                  expect(res.body[0].name).to.be.equal("Name");
+                  expect(res.body[0].description).to.be.equal("Description");
+                  itemDAO.deleteItem(res.body[0].id);
+                  done();
+              });
+      });
+    });
+   ```
+5. Run `npm run test` and see how the tests for getItems endpoint works.
+6. Add the tests for remmaining endpoints.
+NOTE: Following TDD approach, we should create the tests first and development should be based on passing those tests.
+7. Now, let's create the tests for the ItemDAO object
+8. Create `item.dao.spec.ts` in `test/dao` folder.
+9. Add the following content inside:
+    ```javascript
+    import chaiHttp = require("chai-http");
+    import app from "../../src/application";
+    import { ItemDAO } from "../../src/dao/item.dao";
+    import * as chai from "chai";
+
+    const expect = chai.expect;
+    chai.use(chaiHttp);
+    describe("ItemRoute - Test ItemRoute endpoints", function () {
+        it("getItems - Should retrieve and empty Array", (done: () => void): void => {
+            chai.request(app)
+                .get("/api/v1/items")
+                .set("content-type", "application/json")
+                .send({})
+                .end((err: Error, res: any): void => {
+                    expect(res.statusCode).to.be.equal(200);
+                    expect(res.body.length).to.be.equal(0);
+                    done();
+                });
+        });
+        it("getItems - Should retrieve and Item Array with one Item", (done: () => void): void => {
+          const itemDAO = ItemDAO.getInstance();
+          itemDAO.addItem({"description": "Description", name: "Name", id: "id"});
+          chai.request(app)
+              .get("/api/v1/items")
+              .set("content-type", "application/json")
+              .send({})
+              .end((err: Error, res: any): void => {
+                  expect(res.statusCode).to.be.equal(200);
+                  expect(res.body.length).to.be.equal(1);
+                  expect(res.body[0].name).to.be.equal("Name");
+                  expect(res.body[0].description).to.be.equal("Description");
+                  itemDAO.deleteItem(res.body[0].id);
+                  done();
+              });
+      });
+    });
+
+    ```
+10. asdsad
 
