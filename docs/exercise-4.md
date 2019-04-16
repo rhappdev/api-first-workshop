@@ -2,6 +2,7 @@
 
 In this exericse , we will explore the starter hello-world nodejs application built with express and [oas-tools](https://www.npmjs.com/package/oas-tools) and perform following tasks:
 
+
 * Include openAPI spec for todolist API
 * Implement endpoints for the API based on the specificaiton
 * Implement unit tests for the exposed endpoint.
@@ -10,7 +11,8 @@ In this exericse , we will explore the starter hello-world nodejs application bu
 
 [Nodejs - 8.0+](https://nodejs.org/en/download/)
 
-# Part 1 -  Build Todolist API by including OpenAPI specification 
+# Part 1 -  Build Todolist API by including OpenAPI specification
+
 ### Step 1 - Explore the app
 
  Git clone the api-first-workshop-nodejs project to your local machine and checkout the master branch using the following.
@@ -26,18 +28,16 @@ npm run dev
 
 ```
 
-<p style="color:gray">
-NOTE: The app already contains the sample code for hello-world api based on hello-world openAPI specification.
-</p>
+
+> Note: The app already contains the sample code for hello-world api based on hello-world openAPI specification.
 
 ### Step 2 - Include openAPI specification for todolist API.
 
 * Download the specification for todolist API from APICURIO that we genereated in previous exercise 
 * Replace it with  swagger.yaml file located at ./src/definition/ 
 
-<p style="color:gray">
-In case if you have not been able to finish, please download the complete todolist API specification from [here](../contract/swagger.yaml)
-</p>
+> Note: In case if you have not been able to finish, please download the complete todolist API specification from [here](../contract/swagger.yaml)
+
 
 ### Step 3 - Verify app is running without any errors.
 
@@ -54,9 +54,9 @@ oas-tools looks for a special annotation in .yaml file to link the endpoint to i
 
     * Just before `operationId: getItems`, add property `x-swagger-router-controller: itemRoute`
 
-  <p style="color:gray">
-Likewise, please add the same property for remaining operations: createItem, getItem, updateItem and deleteItem.
-</p>
+  
+> Likewise, please add the same property for remaining operations: createItem, getItem, updateItem and deleteItem.
+
 
 ## Step X : todo: @Mikel do we need to include step x-name item? is it not something we will define in apicurio ?
 
@@ -65,11 +65,12 @@ Likewise, please add the same property for remaining operations: createItem, get
 ```
 npm run test
 ```
-<p style="color:gray">
-Review the test written in application.spec.ts located at '/test/applicaiton.spec.ts'. 
-</p>
+
+> Review the test written in application.spec.ts located at '/test/applicaiton.spec.ts'. 
+
 
 # Part 2 -  Implement routes and hanlders for various operations (i.e. writing actual code)
+
 ### Step 1 - Define routes for the operations delcared in the openAPI specificaiton (`swagger.yaml`).
   * Create a new file `itemRoute.ts` at `src/routes`.
   * Include reference for express router and asyncHandler.
@@ -99,27 +100,27 @@ Review the test written in application.spec.ts located at '/test/applicaiton.spe
       debug.log("getItemsHandler end");
       }
     ```
-<p style="color:gray">
-Note: Data models and data access objects (Dao) are already defined as part of base template.
-</p>
+
+> Note: Data models and data access objects (Dao) are already defined as part of base template.
+
 
 * Update the `itemRoute.ts` to map the controller with the corresponding route.
 
  ```javascript
   export const getItems  = Router().use("/", asyncHandler(getItemsHandler, "getItems"));
  ```
- <p style="color:gray">
-Note: All the parameters and body objects are accessible through  req.swagger.params.xxx.value attribute.
-</p>
+ 
+> Note: All the parameters and body objects are accessible through  req.swagger.params.xxx.value attribute.
 
-### Step 2 - Verify app is running fine.
+
+### Step 3 - Verify app is running fine.
 You should able to retrive list of items with 200 Http status code.
 ```
 npm run dev
 ```
- <p style="color:gray">
-Likewise implement the rest of the operations\endpoints defined in the todlist openAPI spec. For reference, the solution has been provided in branch named "step2".
-</p>
+ 
+> Likewise implement the rest of the operations\endpoints defined in the todlist openAPI spec. For reference, the solution has been provided in branch named "step2".
+
 
 
 # Part 3 -  Implement unit tests for different routes.
