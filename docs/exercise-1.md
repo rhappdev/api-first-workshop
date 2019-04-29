@@ -69,6 +69,7 @@ We are going to create an api specification with the following requirementes
    3.  Click "Save"
 3. Fill the fields:
    ![Create API](images/exercise-1/api-create.png)
+
    1. Name: ToDo API
    2. Description: ToDo API specification
    3. Type: Open API 3.0.2
@@ -77,6 +78,7 @@ We are going to create an api specification with the following requirementes
 4. Define the Data Types
 5. Click "Add a data type" link
    ![Add Datatype](images/exercise-1/add-datatype.png)
+
 6. Fill the fields:
    1. Name: Error
    2. Description: Error Object
@@ -91,11 +93,13 @@ We are going to create an api specification with the following requirementes
    1. Choose to create a Rest Resource with the Data Type: No Resource (NOTE: if you click Rest Resource, creates automatically all the paths and methods required to manage the Error object, this is useful for the `Item` object but we are not going to use it. All the creation will be made manually to gain more experience).
 7. Click "Save" button.
    ![Error Object](images/exercise-1/error-object.png)
+
 8. You can add descriptions into the `Error` Object properties. Add them.
 9.  Now It's your turn, try to do the same with `Items` Object following the requirements.
 10. Now It's time to create some paths, we will cover the GET /items.
 11. Click Add path:
     ![Add path](images/exercise-1/add-path.png)
+    
 12. Enter the path: /items
 13. As soon as the popup is closed you can see the new path. In the detail page, we are going to add some extra information and enable the GET operation.
 14. Fill the info section:
