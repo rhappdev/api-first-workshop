@@ -13,7 +13,7 @@ In this exericse , we will explore the starter hello-world nodejs application bu
 
 # Part 1 -  Build Todolist API by including OpenAPI specification
 
-### Step 1 - Explore the app
+###### Step 1 - Explore the app
 
  Git clone the api-first-workshop-nodejs project to your local machine and checkout the master branch using the following.
 
@@ -31,24 +31,24 @@ npm run dev
 
 > Note: The app already contains the sample code for hello-world api based on hello-world openAPI specification.
 
-### Step 2 - Include openAPI specification for todolist API.
+###### Step 2 - Include openAPI specification for todolist API.
 
-* Download the specification for todolist API from APICURIO that we genereated in previous exercise 
+* Download the specification for todolist API from Apicurio that we genereated in exercise-1. 
 * Replace it with  swagger.yaml file located at ./src/definition/ 
 
-> Note: In case if you have not been able to finish, please download the complete todolist API specification from [here](../contract/swagger.yaml)
+> Note: In case if you have not been able to finish exercise-1, please download the complete todolist API specification from [here](../contract/swagger.yaml)
 
 
-### Step 3 - Verify app is running without any errors.
+###### Step 3 - Verify app is running without any errors.
 
 ```
 npm run dev
 ```
-### Step 4 - Interact with todolist API's resources
+###### Step 4 - Interact with todolist API's resources
 Review the todolist API's resources through swagger-ui located at `http://localhost:8001/docs`.
 
-### Step 5 - Define handlers/controllers for the endpoints/operations.  
-oas-tools looks for a special annotation in .yaml file to link the endpoint to its express router and controller when a excuting a request.
+###### Step 5 - Define controllers for each operation (endpoints).  
+oas-tools looks for a special annotation in .yaml file to map the endpoint to its express router and controller when executing a request.
 
   * In swagger.yaml, define the controller for operation "/getitems" :
 
@@ -57,10 +57,14 @@ oas-tools looks for a special annotation in .yaml file to link the endpoint to i
   
 > Likewise, please add the same property for remaining operations: createItem, getItem, updateItem and deleteItem.
 
+###### Step 6 - Update `PUT` and `POST` operations with extra annotation.
+ * In swagger.yaml , for `createItem` and `updateItem` operation :
 
-## Step X : todo: @Mikel do we need to include step x-name item? is it not something we will define in apicurio ?
+    * Just after `requestBody` property, add `x-name: item` property. Keep the indentation same as the property `description`.
+    
+ > OpenAPI Specification version 3 defines request's body in a different way. It is not a parameter as it was in Swagger version 2. Requests bodies are defined in a section 'requestBody' which doesn't have  property called `name`. It needs this property to work with the code that is genereated using openapi-generator tool.
 
-### Step 6 - Verify app is running ok.
+###### Step 7 - Verify app is running ok.
 
 ```
 npm run test
@@ -69,9 +73,9 @@ npm run test
 > Review the test written in application.spec.ts located at '/test/applicaiton.spec.ts'. 
 
 
-# Part 2 -  Implement routes and hanlders for various operations (i.e. writing actual code)
+# Part 2 -  Implement routes and controllers for various operations (i.e. writing actual code)
 
-### Step 1 - Define routes for the operations delcared in the openAPI specificaiton (`swagger.yaml`).
+###### Step 1 - Define routes for the operations delcared in the openAPI specificaiton (`swagger.yaml`).
   * Create a new file `itemRoute.ts` at `src/routes`.
   * Include reference for express router and asyncHandler.
   ```javasript
@@ -79,7 +83,7 @@ npm run test
   import { asyncHandler } from "../lib/asyncHandler";
   ```
 
-### Step 2 - Define controllers/functions for each operations declared in the openAPI specification.
+###### Step 2 - Define controllers/functions for each operations declared in the openAPI specification.
 
 * Create file getItemsHander.ts at `src\controllers` and update it with following code.
  
@@ -113,19 +117,19 @@ npm run test
 > Note: All the parameters and body objects are accessible through  req.swagger.params.xxx.value attribute.
 
 
-### Step 3 - Verify app is running fine.
+###### Step 3 - Verify app is running fine.
 You should able to retrive list of items with 200 Http status code.
 ```
 npm run dev
 ```
  
-> Likewise implement the rest of the operations\endpoints defined in the todlist openAPI spec. For reference, the solution has been provided in branch named "step2".
+> Likewise implement the rest of the operations\endpoints defined in the todlist openAPI spec. For reference, the solution has been provided in branch  "step2".
 
 
 
 # Part 3 -  Implement unit tests for different routes.
 
-### Step 1 - Define the tests .
+###### Step 1 - Define the tests .
 * Create file `item.route.spec.ts` in `test/routes` folder.
 * Update file `item.route.spec.ts` with following test case:
 ```javascript
@@ -166,13 +170,13 @@ npm run dev
       });
     });
    ```
-### Step 2 - Verify the test .
+###### Step 2 - Verify the test .
 ```
 npm run test
 ```
 
 # Part 3 -  Implement unit tests for Data access objects 
-### Step 1 - Define the test.
+###### Step 1 - Define the test.
 * Create file `item.dao.spec.ts` in `test/dao` folder.
 * Update file `item.dao.spec.ts` with following test case:
 
@@ -216,7 +220,7 @@ npm run test
 
   ```
 
-#### Step 2 - Verify the test .
+###### Step 2 - Verify the test .
 ```
 npm run test
 ```

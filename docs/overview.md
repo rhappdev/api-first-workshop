@@ -1,6 +1,6 @@
 # Overview
 
-In this workshop you will build a cloud application along with ionic angular frontend using openAPI specification. 
+In this workshop you will create a todo-list application by  building a nodejs cloud app and ionic angular frontend using openAPI specification. 
 
 
 **You will learn how to**
@@ -11,7 +11,7 @@ In this workshop you will build a cloud application along with ionic angular fro
 
  * Exercise 3: Build a ionic-angular frontend app to communicate with  backend REST API using [openapi-generator](https://www.npmjs.com/package/@openapitools/openapi-generator-cli). This tool helps to generate server stubs and client SDKS defined for API with OpenAPI specification
 
- * Exercise 4: Build a nodejs app from scratch using [todo:oas-tools](https://www.npmjs.com/package/oas-tools) module. The module allows to support REST API defined with openAPI spec.
+ * Exercise 4: Build a nodejs app from scratch using [oas-tools](https://www.npmjs.com/package/oas-tools) module. The module allows to support REST API defined with openAPI spec.
 
  
 

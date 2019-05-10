@@ -1,18 +1,13 @@
 # Introduction
+In this exercise, you will define the API to be used for the todolist application using Apicurio.
 
-This walkthrough covers the process of designing an API with Apicurio. At the end of the exercise the contract will be signed, allowing the frontend and backend developers to start the development process.
+> Apicurio Studio , maintained by the Red Hat Developer Program, is a tool for designing APIs that follows the specification without requiring the developer(s) to be intimately familiar with it. It provides a GUI for defining all aspects of the API. Ultimately, Apicurio outputs both human and machine readable documentation which complies with the latest version of the OpenAPI specification.
 
-# APICurio
-
-# What is APICurio?
-
-Apicurio Studio, maintained by the Red Hat Developer Program, is a tool for designing APIs that follows the specification without requiring the developer(s) to be intimately familiar with it. It provides a GUI for defining all aspects of the API. Ultimately, Apicurio outputs both human and machine readable documentation which complies with the latest version of the OpenAPI specification.
-
-# Create an account
+## Step 1 - Create an account
 
 APICurio offers a SaaS option located at https://studio.apicur.io. Please create an account by Clicking the "Register" button or using an Identity Provider like Google or GitHub.
 
-# APICurio overview
+## Step 2 - Explore Apicurio
 
 As soon as you are logged into APICurio you will see three main sections.
 
@@ -23,11 +18,11 @@ As soon as you are logged into APICurio you will see three main sections.
    * Import API (If we have already one API, we can import it and manage in APICurio)
 3. Settings (Custom Settings, Linked Accounts)
 
-# API Specification Requirements
+## Step 3 - Explore requirements for todo-list API 
 
-We are going to create an api specification with the following requirementes
+The API should expose endpoints with following data models:
 
-* Data Types (Models reused across endpoints):
+* Data Models:
   * Error
     - code: string
     - extra: string
@@ -60,29 +55,26 @@ We are going to create an api specification with the following requirementes
     - Response:
       - Code 204
 
-# ToDo List API Specification creation (Step by Step)
+## Step 4 - Define the todo-list API specification with Apicurio
 
-1. Click "APIs" section and Click "Create New API"
-2. In servers section, Add a new server:
-   1.  Server URL: http://localhost:8001/api/v1
-   2.  Description: Local Env Server
-   3.  Click "Save"
-3. Fill the fields:
-   ![Create API](images/exercise-1/api-create.png)
+###### 4.1 Go to section "APIs" and click "Create New API"
+  ![Create API](images/exercise-1/api-create.png)
+  * Name: Todo API
+  * Description : ToDo API specification
+  * Type: Open API 3.0.2
+  * Template: Blank API
 
-   1. Name: ToDo API
-   2. Description: ToDo API specification
-   3. Type: Open API 3.0.2
-   4. Template: Blank API
+###### 4.2. Edit the API and in servers section, Add a new server:
+   * Server URL: http://localhost:8001/api/v1
+   * Description: Local Env Server
+   * Click "Save"
 
-4. Define the Data Types
-5. Click "Add a data type" link
+
+###### 4.3. Define the Data Model `Error` by clicking on `Add a data type` link
    ![Add Datatype](images/exercise-1/add-datatype.png)
-
-6. Fill the fields:
-   1. Name: Error
-   2. Description: Error Object
-   3. Enter JSON Example:
+   * Name: Error
+   * Description: Error Object
+   * Enter JSON Example:
    ```
    {
       "code": "ERR001",
@@ -90,37 +82,42 @@ We are going to create an api specification with the following requirementes
       "extra": "Extra error message"
     }
    ```
-   1. Choose to create a Rest Resource with the Data Type: No Resource (NOTE: if you click Rest Resource, creates automatically all the paths and methods required to manage the Error object, this is useful for the `Item` object but we are not going to use it. All the creation will be made manually to gain more experience).
-7. Click "Save" button.
+   * Choose to create a Rest Resource with the Data Type: No Resource 
+   > Note: if you click Rest Resource, creates automatically all the paths and methods required to manage the Error data model, this is useful for the `Item` data model but you are not going to use it. All the creation will be made manually to gain more experience.
+
+   * Click "Save" button.
    ![Error Object](images/exercise-1/error-object.png)
+    > Additionally you can add description for `Error` data model.
 
-8. You can add descriptions into the `Error` Object properties. Add them.
-9.  Now It's your turn, try to do the same with `Items` Object following the requirements.
-10. Now It's time to create some paths, we will cover the GET /items.
-11. Click Add path:
-    ![Add path](images/exercise-1/add-path.png)
+###### 4.4. Likewise define the Data Model `Items` by clicking on `Add a data type` link again 
+###### 4.5. Next, create an API path(endpoints) `/items` by clicking on `Add path` link
+![Add path](images/exercise-1/add-path.png)
     
-12. Enter the path: /items
-13. As soon as the popup is closed you can see the new path. In the detail page, we are going to add some extra information and enable the GET operation.
-14. Fill the info section:
-    1.  Summary: Path used to manage the list of Items.
-    2.  Description: The REST endpoint/path used to list and create zero or more `Item` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
-15. Operations click "Get" button and "Add Operation" buton.
-    ![Get Operation 1](images/exercise-1/get-operation-1.png)
-16. Fill the following sections:
-    1.  Info:
-        1.  Summary: List All Items
-        2.  Description: Gets a list of all `Item` entities.
-        3.  Operation ID: getItems
-    2.  Responses:
-        1.  Add 200 Status code.
-        2.  Description: Successful response - returns an array of `Item` entities.
-        3.  Response Body: Add Media Type -> Application/json -> Type: `Array` of `Item`.
-        4.  Add 500 Status code.
-        5.  Description: Error response - returns an object of `Error` entity.
-        6.  Response Body: Add Media Type -> Application/json -> Type: `Error`.
-17. Now Create the rest of the endpoints filling the requirements.
+  * Enter the path: /items
+  * As soon as the popup is closed you can see the new path. In the detail page, you are going to add some extra information and enable the GET operation.
+    * Info section:
+      * Summary: Path used to manage the list of Items.
+      * Description: The REST endpoint to list and create `Item` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
+    * Operations section:
+      * Under the tab "Get" , click "Add Operation" button.
+        ![Get Operation 1](images/exercise-1/get-operation-1.png)
+      * And fill the following sections:
+        * Info:
+          * Summary: List All Items
+          * Description: Gets a list of all `Item` entities.
+          * Operation ID: getItems
+        * Responses:
+          * Add a response.
+            * Add 200 Status code.
+              * Description: Successful response - returns an array of `Item` entities.
+              * Response Body: Add Media Type -> Application/json -> Type: `Array` of `Item`.
+            * Add 500 Status code.
+              * Description: Error response - returns an object of `Error` entity.
+              * Response Body: Add Media Type -> Application/json -> Type: `Error`.
 
+###### 4.6. Likewise, please add the rest of the endpoints based on the requirements mentioned in step 3.
+
+> You can find the complete specification [here](../contract/swagger.yaml)
 
 
 
