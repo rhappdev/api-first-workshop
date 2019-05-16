@@ -1,0 +1,14 @@
+{
+	"id": "526a9401-ea31-45b8-a77a-8bc60039534d",
+	"name": "ToDo List",
+	"values": [
+		{
+			"key": "url",
+			"value": "https://1da2b46b-9d18-4996-ae9a-2db127ad1d13.mock.pstmn.io",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-05-16T13:24:58.808Z",
+	"_postman_exported_using": "Postman/7.0.9"
+}
