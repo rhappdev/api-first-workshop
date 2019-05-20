@@ -14,7 +14,7 @@ Now that you have the complete swagger doc, open Postman, in the top left hand c
 
 ![File Importer](/docs//images/exercise-2/postman-file-importer.png)
 
-Select choose files and navaigate the to the directory were you swagger file is save.
+Select choose files and navigate the to the directory were you swagger file is save.
 
 If the swagger file is vaild and can be parsed, a new collection with the label `ToDo List` will appear in Postman's collections sidebar.
 
@@ -24,19 +24,19 @@ In Postmans collection explorer, collapse the ToDo List collection and any subdi
 
 ![Collection Explorer](/docs//images/exercise-2/postman-imported-coll.png)
 
-You should find 5 items, describing them ake of each http to that assocted endpoint, anging from get an item to delete and item. Lets explore one of these items in more detail.
+You should find 5 endpoints, ranging from `GET` an item to `DELETE` and item. Lets explore one of these items in more detail.
 
-Select the item with label `List All Items`. This is a GET HTTP Operation that will return all valid Todo items in a array.
+Select the item with label `List All Items`. This is a `GET HTTP` Operation that will return all valid `Todo` items in a array.
 
-To the right hand corner, we can see examples of our response. Click `Examples` and select an item from the list to reveal example responses.
+To the right hand corner, we can see examples of our response. Click `Examples(2)` and select an item from the list to reveal example responses.
 
 ![Example Response](/docs//images/exercise-2/postman-response-example.png)
 
 ## Step 4 - Setting up our Mock Server
 
-We will to setup a server to run our tests. Luckily, Postman offer us a [mock server](https://learning.getpostman.com/docs/postman/mock_servers/setting_up_mock/) out of the box. This provides the ability to run the tests and validate the api schema.
+We will to setup a server to run our tests. Luckily, Postman offer us a [mock server](https://learning.getpostman.com/docs/postman/mock_servers/setting_up_mock/) out of the box. This provides the ability to run the tests and validate the api schema. Another advantage is that we can run a mock server and allow the developers to retrieve mocked responses until the backend is implemented.
 
-Let's setup a mock server for our Todo collection in Postman.
+Let's setup a mock server for our `Todo` collection in Postman.
 
 1. Select the parent row of the ToDo List collection from the collection explorer to the left of the window.
    ![Mock Server - 1](/docs//images/exercise-2/mock-server-1.png)
@@ -171,7 +171,7 @@ pm.test("Response body matches expected schema", function() {
 1. In the example request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
 2. In the example request body, paste the sample request object below, save changes and close window.
 3. In the `params` set the value of `itemId` to `1234`.
-4. In the request body tab paste th eobject below.
+4. In the request body tab paste the object below.
 
 ```json
 {
