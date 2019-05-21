@@ -13,8 +13,10 @@ In this workshop you will create a todo-list application by  building a nodejs c
 
  * Exercise 4: Build a nodejs app from scratch using [oas-tools](https://www.npmjs.com/package/oas-tools) module. The module allows to support REST API defined with openAPI spec.
 
-
-    ![Create API](images/cf-workshop.png)
+<div style="text-align: center;align:center">
+  <img src="./images/cf-workshop.png" />
+  </div>
+  
  
 
  

@@ -3,6 +3,10 @@
 	"title": "Contract-First workshop",
   "plugins": ["prism", "-highlight", "github", "ga"],
 	"pluginsConfig": {
+		"fontSettings": {
+			
+			"size": 4
+	},
 		"github": {
 			"url": "https://github.com/primashah/workshop.github.io.git"
 		},
@@ -10,6 +14,12 @@
 				"token": "UA-105153875-1"
 		}
 	},
+	"pdf": {
+
+		
+		"fontSize": 12
+
+},
 	"theme-default": {
 		"showLevel": true
 	}
