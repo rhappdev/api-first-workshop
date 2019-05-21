@@ -1,0 +1,510 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Exercise -4 · Contract-First workshop</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="exercise-3.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="overview.html">
+            
+                <a href="overview.html">
+            
+                    
+                    Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="tools-framework.html">
+            
+                <a href="tools-framework.html">
+            
+                    
+                    Tools-Frameworks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="exercise-1.html">
+            
+                <a href="exercise-1.html">
+            
+                    
+                    Exercise -1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="exercise-2.html">
+            
+                <a href="exercise-2.html">
+            
+                    
+                    Exercise -2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="exercise-3.html">
+            
+                <a href="exercise-3.html">
+            
+                    
+                    Exercise -3
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7" data-path="exercise-4.html">
+            
+                <a href="exercise-4.html">
+            
+                    
+                    Exercise -4
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Exercise -4</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>In this exericse , we will explore the starter hello-world nodejs application built with express and <a href="https://www.npmjs.com/package/oas-tools" target="_blank">oas-tools</a> and perform following tasks:</p>
+<ul>
+<li>Include openAPI spec for todolist API</li>
+<li>Implement endpoints for the API based on the specificaiton</li>
+<li>Implement unit tests for the exposed endpoint.</li>
+</ul>
+<h1 id="pre-reqs">Pre-reqs</h1>
+<p><a href="https://nodejs.org/en/download/" target="_blank">Nodejs - 8.0+</a></p>
+<h1 id="part-1----build-todolist-api-by-including-openapi-specification">Part 1 -  Build Todolist API by including OpenAPI specification</h1>
+<h6 id="step-1---explore-the-app">Step 1 - Explore the app</h6>
+<p> Git clone the api-first-workshop-nodejs project to your local machine and checkout the master branch using the following.</p>
+<pre class="language-"><code>git clone https://github.com/rhappdev/api-first-workshop-nodejs
+
+cd api-first-workshop-nodejs
+
+npm install
+
+npm run dev
+</code></pre><blockquote>
+<p>Note: The app already contains the sample code for hello-world api based on hello-world openAPI specification.</p>
+</blockquote>
+<h6 id="step-2---include-openapi-specification-for-todolist-api">Step 2 - Include openAPI specification for todolist API.</h6>
+<ul>
+<li>Download the specification for todolist API from Apicurio that we genereated in <a href="exercise-1.html">exercise-1</a>. </li>
+<li>Replace it with  <code>swagger.yaml</code> file located at <code>./src/definition/</code> </li>
+</ul>
+<blockquote>
+<p>Note: In case if you have not been able to finish <a href="exercise-1.html">exercise-1</a>, please download the complete todolist API specification from <a href="../contract/swagger.yaml">here</a></p>
+</blockquote>
+<h6 id="step-3---verify-app-is-running-without-any-errors">Step 3 - Verify app is running without any errors.</h6>
+<pre class="language-"><code>npm run dev
+</code></pre><h6 id="step-4---interact-with-todolist-apis-resources">Step 4 - Interact with todolist API&apos;s resources</h6>
+<p>Review the todolist API&apos;s resources through swagger-ui located at <code>http://localhost:8001/docs</code>.</p>
+<h6 id="step-5---define-controllers-for-each-operation-endpoints">Step 5 - Define controllers for each operation (endpoints).</h6>
+<p>oas-tools looks for a special annotation in <code>.yaml</code> file to map the endpoint to its express router and controller when executing a request.</p>
+<ul>
+<li><p>In <code>swagger.yaml</code>, define the controller for operation <code>/getitems</code> :</p>
+<ul>
+<li>Just before <code>operationId: getItems</code>, add property <code>x-swagger-router-controller: itemRoute</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Likewise, please add the same property for remaining operations: <code>createItem</code>, <code>getItem</code>, <code>updateItem</code> and <code>deleteItem</code>.</p>
+</blockquote>
+<h6 id="step-6---update-put-and-post-operations-with-extra-annotation">Step 6 - Update <code>PUT</code> and <code>POST</code> operations with extra annotation.</h6>
+<ul>
+<li><p>In <code>swagger.yaml</code> , for <code>createItem</code> and <code>updateItem</code> operation :</p>
+<ul>
+<li>Just after <code>requestBody</code> property, add <code>x-name: item</code> property. Keep the indentation same as the property <code>description</code>.</li>
+</ul>
+<blockquote>
+<p>OpenAPI Specification version 3 defines request&apos;s body in a different way. It is not a parameter as it was in Swagger version 2. Requests bodies are defined in a section <code>requestBody</code> which doesn&apos;t have  property called <code>name</code>. It needs this property to work with the code that is genereated using <code>openapi-generator</code> tool.</p>
+</blockquote>
+</li>
+</ul>
+<h6 id="step-7---verify-app-is-running-ok">Step 7 - Verify app is running ok.</h6>
+<pre class="language-"><code>npm run test
+</code></pre><blockquote>
+<p>Review the test written in application.spec.ts located at <code>/test/applicaiton.spec.ts</code>. </p>
+</blockquote>
+<h1 id="part-2----implement-routes-and-controllers-for-various-operations-ie-writing-actual-code">Part 2 -  Implement routes and controllers for various operations (i.e. writing actual code)</h1>
+<h6 id="step-1---define-routes-for-the-operations-delcared-in-the-openapi-specificaiton-swaggeryaml">Step 1 - Define routes for the operations delcared in the openAPI specificaiton (<code>swagger.yaml</code>).</h6>
+<ul>
+<li>Create a new file <code>itemRoute.ts</code> at <code>src/routes</code>.</li>
+<li>Include reference for express router and asyncHandler.<pre class="language-"><code class="lang-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Router <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;express&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> asyncHandler <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../lib/asyncHandler&quot;</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ul>
+<h6 id="step-2---define-controllersfunctions-for-each-operations-declared-in-the-openapi-specification">Step 2 - Define controllers/functions for each operations declared in the openAPI specification.</h6>
+<ul>
+<li><p>Create file <code>getItemsHander.ts</code> at <code>src\controllers</code> and update it with following code.</p>
+<pre class="language-"><code class="lang-javascript">    <span class="token keyword">import</span> <span class="token punctuation">{</span> Request<span class="token punctuation">,</span> Response <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;express&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> <span class="token constant">P</span> <span class="token keyword">from</span> <span class="token string">&quot;bluebird&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> TDebug <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../log&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> ItemDAO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../dao/item.dao&quot;</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> debug <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TDebug</span><span class="token punctuation">(</span><span class="token string">&quot;nodejs:src:controllers:getItemsHandler&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> itemDao <span class="token operator">=</span> ItemDAO<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getItemsHandler</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">:</span> Request<span class="token punctuation">,</span> res<span class="token punctuation">:</span> Response</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token constant">P</span><span class="token operator">&lt;</span>any<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    debug<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;getItemsHandler start&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> items <span class="token operator">=</span> itemDao<span class="token punctuation">.</span><span class="token function">getItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>items<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    debug<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;getItemsHandler end&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>Note: Data models and data access objects (Dao) are already defined as part of base template.</p>
+</blockquote>
+<ul>
+<li><p>Update the <code>itemRoute.ts</code> to map the controller with the corresponding route.</p>
+<pre class="language-"><code class="lang-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> getItems  <span class="token operator">=</span> <span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">,</span> <span class="token function">asyncHandler</span><span class="token punctuation">(</span>getItemsHandler<span class="token punctuation">,</span> <span class="token string">&quot;getItems&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>Note: All the parameters and body objects are accessible through <code>req.swagger.params.xxx.value</code> attribute.</p>
+</blockquote>
+<h6 id="step-3---verify-app-is-running-fine">Step 3 - Verify app is running fine.</h6>
+<p>You should able to retrive list of items with 200 Http status code.</p>
+<pre class="language-"><code>npm run dev
+</code></pre><blockquote>
+<p>Likewise implement the rest of the operations\endpoints defined in the todlist openAPI spec. For reference, the solution has been provided in branch  <code>step2</code>.</p>
+</blockquote>
+<h1 id="part-3----implement-unit-tests-for-different-routes">Part 3 -  Implement unit tests for different routes.</h1>
+<h6 id="step-1---define-the-tests-">Step 1 - Define the tests .</h6>
+<ul>
+<li>Create file <code>item.route.spec.ts</code> in <code>test/routes</code> folder.</li>
+<li><p>Update file <code>item.route.spec.ts</code> with following test case:</p>
+<pre class="language-"><code class="lang-javascript">  <span class="token keyword">import</span> chaiHttp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;chai-http&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">import</span> app <span class="token keyword">from</span> <span class="token string">&quot;../../src/application&quot;</span><span class="token punctuation">;</span>
+  <span class="token keyword">import</span> <span class="token punctuation">{</span> ItemDAO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../src/dao/item.dao&quot;</span><span class="token punctuation">;</span>
+  <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> chai <span class="token keyword">from</span> <span class="token string">&quot;chai&quot;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> expect <span class="token operator">=</span> chai<span class="token punctuation">.</span>expect<span class="token punctuation">;</span>
+  chai<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>chaiHttp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">&quot;ItemRoute - Test ItemRoute endpoints&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">&quot;getItems - Should retrieve and empty Array&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token function-variable function">done</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token parameter"><span class="token keyword">void</span></span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          chai<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/api/v1/items&quot;</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;content-type&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;application/json&quot;</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">:</span> Error<span class="token punctuation">,</span> res<span class="token punctuation">:</span> any<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token parameter"><span class="token keyword">void</span></span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                  <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>statusCode<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">&quot;getItems - Should retrieve and Item Array with one Item&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token function-variable function">done</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token parameter"><span class="token keyword">void</span></span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> itemDAO <span class="token operator">=</span> ItemDAO<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        itemDAO<span class="token punctuation">.</span><span class="token function">addItem</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;Description&quot;</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token string">&quot;Name&quot;</span><span class="token punctuation">,</span> id<span class="token punctuation">:</span> <span class="token string">&quot;id&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        chai<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/api/v1/items&quot;</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;content-type&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;application/json&quot;</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">:</span> Error<span class="token punctuation">,</span> res<span class="token punctuation">:</span> any<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token parameter"><span class="token keyword">void</span></span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>statusCode<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token string">&quot;Name&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>description<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token string">&quot;Description&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                itemDAO<span class="token punctuation">.</span><span class="token function">deleteItem</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h6 id="step-2---verify-the-test-">Step 2 - Verify the test .</h6>
+<pre class="language-"><code>npm run test
+</code></pre></li>
+</ul>
+<h1 id="part-3----implement-unit-tests-for-data-access-objects">Part 3 -  Implement unit tests for Data access objects</h1>
+<h6 id="step-1---define-the-test">Step 1 - Define the test.</h6>
+<ul>
+<li>Create file <code>item.dao.spec.ts</code> in <code>test/dao</code> folder.</li>
+<li>Update file <code>item.dao.spec.ts</code> with following test case:</li>
+</ul>
+<pre class="language-"><code class="lang-javascript">    <span class="token keyword">import</span> chaiHttp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;chai-http&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> app <span class="token keyword">from</span> <span class="token string">&quot;../../src/application&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span> ItemDAO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../src/dao/item.dao&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> chai <span class="token keyword">from</span> <span class="token string">&quot;chai&quot;</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> expect <span class="token operator">=</span> chai<span class="token punctuation">.</span>expect<span class="token punctuation">;</span>
+    chai<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>chaiHttp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">&quot;ItemRoute - Test ItemRoute endpoints&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">&quot;getItems - Should retrieve and empty Array&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token function-variable function">done</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token parameter"><span class="token keyword">void</span></span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            chai<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/api/v1/items&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;content-type&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;application/json&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">:</span> Error<span class="token punctuation">,</span> res<span class="token punctuation">:</span> any<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token parameter"><span class="token keyword">void</span></span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                    <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>statusCode<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">&quot;getItems - Should retrieve and Item Array with one Item&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token function-variable function">done</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token parameter"><span class="token keyword">void</span></span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> itemDAO <span class="token operator">=</span> ItemDAO<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          itemDAO<span class="token punctuation">.</span><span class="token function">addItem</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;Description&quot;</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token string">&quot;Name&quot;</span><span class="token punctuation">,</span> id<span class="token punctuation">:</span> <span class="token string">&quot;id&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          chai<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/api/v1/items&quot;</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;content-type&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;application/json&quot;</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">:</span> Error<span class="token punctuation">,</span> res<span class="token punctuation">:</span> any<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token parameter"><span class="token keyword">void</span></span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                  <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>statusCode<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token string">&quot;Name&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>description<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token string">&quot;Description&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  itemDAO<span class="token punctuation">.</span><span class="token function">deleteItem</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h6 id="step-2---verify-the-test-">Step 2 - Verify the test .</h6>
+<pre class="language-"><code>npm run test
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="exercise-3.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Exercise -3">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Exercise -4","level":"1.7","depth":1,"previous":{"title":"Exercise -3","level":"1.6","depth":1,"path":"docs/exercise-3.md","ref":"docs/exercise-3.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","github","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/rhappdev/api-first-workshop.git"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"size":4},"ga":{"configuration":"auto","token":"UA-105153875-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Contract-First workshop","gitbook":"3.x.x","theme-default":{"showLevel":true}},"file":{"path":"docs/exercise-4.md","mtime":"2019-05-21T08:54:49.881Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-21T10:49:12.840Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-ga/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,484 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Exercise -1 · Contract-First workshop</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="exercise-2.html" />
+    
+    
+    <link rel="prev" href="tools-framework.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="overview.html">
+            
+                <a href="overview.html">
+            
+                    
+                    Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="tools-framework.html">
+            
+                <a href="tools-framework.html">
+            
+                    
+                    Tools-Frameworks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="exercise-1.html">
+            
+                <a href="exercise-1.html">
+            
+                    
+                    Exercise -1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="exercise-2.html">
+            
+                <a href="exercise-2.html">
+            
+                    
+                    Exercise -2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="exercise-3.html">
+            
+                <a href="exercise-3.html">
+            
+                    
+                    Exercise -3
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="exercise-4.html">
+            
+                <a href="exercise-4.html">
+            
+                    
+                    Exercise -4
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Exercise -1</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>In this exercise, you will define the API to be used for the todolist application using Apicurio.</p>
+<blockquote>
+<p>Apicurio Studio , maintained by the Red Hat Developer Program, is a tool for designing APIs that follows the specification without requiring the developer(s) to be intimately familiar with it. It provides a GUI for defining all aspects of the API. Ultimately, Apicurio outputs both human and machine readable documentation which complies with the latest version of the OpenAPI specification.</p>
+</blockquote>
+<h2 id="step-1---create-an-account">Step 1 - Create an account</h2>
+<p>APICurio offers a SaaS option located at <a href="https://studio.apicur.io" target="_blank">https://studio.apicur.io</a>. Please create an account by Clicking the &quot;Register&quot; button or using an Identity Provider like Google or GitHub.</p>
+<h2 id="step-2---explore-apicurio">Step 2 - Explore Apicurio</h2>
+<p>As soon as you are logged into APICurio you will see three main sections.</p>
+<ol>
+<li>Dashboard (Overall overview, Activity and Recent APIS).</li>
+<li>APIs<ul>
+<li>View all APIs (Lists the APIs owned and shared with you)</li>
+<li>Create new API (Allows the creation of a new API)</li>
+<li>Import API (If we have already one API, we can import it and manage in APICurio)</li>
+</ul>
+</li>
+<li>Settings (Custom Settings, Linked Accounts)</li>
+</ol>
+<h2 id="step-3---explore-requirements-for-todo-list-api">Step 3 - Explore requirements for todo-list API</h2>
+<p>The API should expose endpoints with following data models:</p>
+<ul>
+<li>Data Models:<ul>
+<li>Error<ul>
+<li>code: string</li>
+<li>extra: string</li>
+<li>message: string</li>
+</ul>
+</li>
+<li>Item<ul>
+<li>id: string</li>
+<li>name: string</li>
+<li>description: string</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Endpoints:<ul>
+<li>GET /items<ul>
+<li>Operation ID: getItems</li>
+<li>Response:<ul>
+<li>Code 200, application/json, Array of Items</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>POST /items<ul>
+<li>Operation ID: createItem</li>
+<li>Request Body: application/json, Item Object</li>
+<li>Response:<ul>
+<li>Code 201</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GET /items/{itemId}<ul>
+<li>Operation ID: getItem</li>
+<li>Response:<ul>
+<li>Code 200, application/json, Item</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>PUT /items/{itemId}<ul>
+<li>Operation ID: updateItem</li>
+<li>Request Body: application/json, Item Object</li>
+<li>Response:<ul>
+<li>Code 202</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DELETE /items/{itemId}<ul>
+<li>Operation ID: deleteItem</li>
+<li>Response:<ul>
+<li>Code 204</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="step-4---define-the-todo-list-api-specification-with-apicurio">Step 4 - Define the todo-list API specification with Apicurio</h2>
+<h6 id="41-go-to-section-apis-and-click-create-new-api">4.1 Go to section &quot;APIs&quot; and click &quot;Create New API&quot;</h6>
+<p>  <img src="images/exercise-1/api-create.png" alt="Create API"></p>
+<ul>
+<li>Name: Todo API</li>
+<li>Description : ToDo API specification</li>
+<li>Type: Open API 3.0.2</li>
+<li>Template: Blank API</li>
+</ul>
+<h6 id="42-edit-the-api-and-in-servers-section-add-a-new-server">4.2. Edit the API and in servers section, Add a new server:</h6>
+<ul>
+<li>Server URL: <a href="http://localhost:8001/api/v1" target="_blank">http://localhost:8001/api/v1</a></li>
+<li>Description: Local Env Server</li>
+<li>Click &quot;Save&quot;</li>
+</ul>
+<h6 id="43-define-the-data-model-error-by-clicking-on-add-a-data-type-link">4.3. Define the Data Model <code>Error</code> by clicking on <code>Add a data type</code> link</h6>
+<p>   <img src="images/exercise-1/add-datatype.png" alt="Add Datatype"></p>
+<ul>
+<li>Name: Error</li>
+<li>Description: Error Object</li>
+<li>Enter JSON Example:<pre class="language-"><code>{
+ &quot;code&quot;: &quot;ERR001&quot;,
+ &quot;message&quot;: &quot;Error from Server&quot;,
+ &quot;extra&quot;: &quot;Extra error message&quot;
+}
+</code></pre></li>
+<li><p>Choose to create a Rest Resource with the Data Type: No Resource </p>
+<blockquote>
+<p>Note: if you click Rest Resource, creates automatically all the paths and methods required to manage the Error data model, this is useful for the <code>Item</code> data model but you are not going to use it. All the creation will be made manually to gain more experience.</p>
+</blockquote>
+</li>
+<li><p>Click &quot;Save&quot; button.
+<img src="images/exercise-1/error-object.png" alt="Error Object"></p>
+<blockquote>
+<p>Additionally you can add description for <code>Error</code> data model.</p>
+</blockquote>
+</li>
+</ul>
+<h6 id="44-likewise-define-the-data-model-items-by-clicking-on-add-a-data-type-link-again">4.4. Likewise define the Data Model <code>Items</code> by clicking on <code>Add a data type</code> link again</h6>
+<h6 id="45-next-create-an-api-pathendpoints-items-by-clicking-on-add-path-link">4.5. Next, create an API path(endpoints) <code>/items</code> by clicking on <code>Add path</code> link</h6>
+<p><img src="images/exercise-1/add-path.png" alt="Add path"></p>
+<ul>
+<li>Enter the path: /items</li>
+<li>As soon as the popup is closed you can see the new path. In the detail page, you are going to add some extra information and enable the GET operation.<ul>
+<li>Info section:<ul>
+<li>Summary: Path used to manage the list of Items.</li>
+<li>Description: The REST endpoint to list and create <code>Item</code> entities.  This path contains a <code>GET</code> and <code>POST</code> operation to perform the list and create tasks, respectively.</li>
+</ul>
+</li>
+<li>Operations section:<ul>
+<li>Under the tab &quot;Get&quot; , click &quot;Add Operation&quot; button.
+<img src="images/exercise-1/get-operation-1.png" alt="Get Operation 1"></li>
+<li>And fill the following sections:<ul>
+<li>Info:<ul>
+<li>Summary: List All Items</li>
+<li>Description: Gets a list of all <code>Item</code> entities.</li>
+<li>Operation ID: getItems</li>
+</ul>
+</li>
+<li>Responses:<ul>
+<li>Add a response.<ul>
+<li>Add 200 Status code.<ul>
+<li>Description: Successful response - returns an array of <code>Item</code> entities.</li>
+<li>Response Body: Add Media Type -&gt; Application/json -&gt; Type: <code>Array</code> of <code>Item</code>.</li>
+</ul>
+</li>
+<li>Add 500 Status code.<ul>
+<li>Description: Error response - returns an object of <code>Error</code> entity.</li>
+<li>Response Body: Add Media Type -&gt; Application/json -&gt; Type: <code>Error</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="46-likewise-please-add-the-rest-of-the-endpoints-based-on-the-requirements-mentioned-in-step-3">4.6. Likewise, please add the rest of the endpoints based on the requirements mentioned in step 3.</h6>
+<blockquote>
+<p>You can find the complete specification <a href="../contract/swagger.yaml">here</a></p>
+</blockquote>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="tools-framework.html" class="navigation navigation-prev " aria-label="Previous page: Tools-Frameworks">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="exercise-2.html" class="navigation navigation-next " aria-label="Next page: Exercise -2">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Exercise -1","level":"1.4","depth":1,"next":{"title":"Exercise -2","level":"1.5","depth":1,"path":"docs/exercise-2.md","ref":"docs/exercise-2.md","articles":[]},"previous":{"title":"Tools-Frameworks","level":"1.3","depth":1,"path":"docs/tools-framework.md","ref":"docs/tools-framework.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","github","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/rhappdev/api-first-workshop.git"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"size":4},"ga":{"configuration":"auto","token":"UA-105153875-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Contract-First workshop","gitbook":"3.x.x","theme-default":{"showLevel":true}},"file":{"path":"docs/exercise-1.md","mtime":"2019-05-10T16:24:13.972Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-21T10:49:12.840Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-ga/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

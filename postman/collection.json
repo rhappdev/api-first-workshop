@@ -1,0 +1,654 @@
+{
+	"info": {
+		"_postman_id": "088745ba-c8e2-4a37-a231-388f6512a486",
+		"name": "ToDo List",
+		"description": "Todo List application definition\n\nContact Support: \n{\n\nName : undefined\n\nEmail : undefined\n\n}",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "items",
+			"item": [
+				{
+					"name": "{item Id}",
+					"item": [
+						{
+							"name": "Get a Item",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "47737f35-61cc-4297-aeb9-4ba222c2893d",
+										"exec": [
+											"var body = JSON.parse(responseBody);",
+											"var schema = {",
+											"    \"properties\": {",
+											"        \"id\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"name\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"description\":{",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body matches expected schema\", function () {",
+											"    pm.expect(tv4.validate(body, schema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/items/:itemId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"items",
+										":itemId"
+									],
+									"variable": [
+										{
+											"key": "itemId",
+											"value": "1234",
+											"description": "A unique identifier for a `Item`."
+										}
+									]
+								},
+								"description": "Gets the details of a single instance of a `Item`."
+							},
+							"response": [
+								{
+									"name": "Successful response - returns a single `Item`.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/items/1234",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"items",
+												"1234"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"1234\",\n \"name\": \"Test\",\n \"description\": \"Test item 1\"\n}"
+								},
+								{
+									"name": "Error response - returns an object of `Error` entity.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{baseUrl}}/items/<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"items",
+												"<string>"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"code\": \"<string>\",\n \"message\": \"<string>\",\n \"extra\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update a Item",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a89d5e03-31b8-4d99-999f-a444ffa87ab2",
+										"exec": [
+											"pm.test(\"Returns status code of 202\", function() {",
+											"  pm.expect(pm.response.code).to.be.eql(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"1234\",\n    \"name\": \"New Test\",\n    \"description\": \"New test description\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/items/:itemId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"items",
+										":itemId"
+									],
+									"variable": [
+										{
+											"key": "itemId",
+											"value": "1234",
+											"description": "A unique identifier for a `Item`."
+										}
+									]
+								},
+								"description": "Updates an existing `Item`."
+							},
+							"response": [
+								{
+									"name": "Successful response.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"1234\",\n  \"name\": \"New Test\",\n  \"description\": \"New test description\"\n}"
+										},
+										"url": {
+											"raw": "{{url}}/items/1234",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"items",
+												"1234"
+											]
+										}
+									},
+									"status": "Accepted",
+									"code": 202,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Error response - returns an object of `Error` entity.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/items/<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"items",
+												"<string>"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"code\": \"<string>\",\n \"message\": \"<string>\",\n \"extra\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete a Item",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "52738d6e-7e65-486e-9fee-adb6daeafefa",
+										"exec": [
+											"pm.test(\"Returns status code of 204\", function() {",
+											"  pm.expect(pm.response.code).to.be.eql(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/items/:itemId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"items",
+										":itemId"
+									],
+									"variable": [
+										{
+											"description": "A unique identifier for a `Item`.",
+											"key": "itemId",
+											"type": "string",
+											"value": "1234"
+										}
+									]
+								},
+								"description": "Deletes an existing `Item`."
+							},
+							"response": [
+								{
+									"name": "Successful response.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/items/1234",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"items",
+												"1234"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Error response - returns an object of `Error` entity.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{baseUrl}}/items/<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"items",
+												"<string>"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"code\": \"<string>\",\n \"message\": \"<string>\",\n \"extra\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "List All Items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "641e3b3c-3c78-40a9-9cf3-a1a7bd7e2d9f",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"var schema = {",
+									"    \"todos\": {",
+									"        \"type\": \"array\"",
+									"    }",
+									"};",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body matches expected schema\", function () {",
+									"    pm.expect(tv4.validate(body, schema)).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/items",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"items"
+							]
+						},
+						"description": "Gets a list of all `Item` entities."
+					},
+					"response": [
+						{
+							"name": "Error response - returns an object of `Error` entity.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/items",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": \"<string>\",\n \"message\": \"<string>\",\n \"extra\": \"<string>\"\n}"
+						},
+						{
+							"name": "List All Items",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/items",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Successful response - returns an array of `Item` entities.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/items",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"id\": \"1234\",\n  \"name\": \"Test\",\n  \"description\": \"first test item\"\n },\n {\n  \"id\": \"1235\",\n  \"name\": \"test 2\",\n  \"description\": \"Secnd test item\"\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create a Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9b84710d-ab96-4e27-8b49-85c5af101b69",
+								"exec": [
+									"pm.test(\"Return a successful status code\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/items",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"items"
+							]
+						},
+						"description": "Creates a new instance of a `Item`."
+					},
+					"response": [
+						{
+							"name": "Error response - returns an object of `Error` entity.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/items",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": \"<string>\",\n \"message\": \"<string>\",\n \"extra\": \"<string>\"\n}"
+						},
+						{
+							"name": "Successful response.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"1234\",\n    \"name\": \"New Item\",\n    \"description\": \"New item spiel\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/items",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "http://localhost:8001/api/v1",
+			"type": "string"
+		}
+	]
+}

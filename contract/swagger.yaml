@@ -1,0 +1,163 @@
+---
+openapi: 3.0.2
+info:
+  title: ToDo List
+  description: Todo List application definition
+  contact:
+    url: http://www.redhat.com
+  license:
+    name: GNU GPLv3
+    url: https://www.gnu.org/licenses/gpl.txt
+  version: 1.0.0
+servers:
+- url: http://localhost:8001/api/v1
+  description: Local Env Server
+paths:
+  /items:
+    summary: Path used to manage the list of Items.
+    description: The REST endpoint/path used to list and create zero or more `Item`
+      entities.  This path contains a `GET` and `POST` operation to perform the list
+      and create tasks, respectively.
+    get:
+      summary: List All Items
+      description: Gets a list of all `Item` entities.
+      operationId: getItems
+      responses:
+        200:
+          description: Successful response - returns an array of `Item` entities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+        500:
+          description: Error response - returns an object of `Error` entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a Item
+      description: Creates a new instance of a `Item`.
+      operationId: createItem
+      requestBody:
+        description: A new `Item` to be created.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+        required: true
+      responses:
+        201:
+          description: Successful response.
+        500:
+          description: Error response - returns an object of `Error` entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /items/{itemId}:
+    summary: Path used to manage a single Item.
+    description: The REST endpoint/path used to get, update, and delete single instances
+      of an `Item`.  This path contains `GET`, `PUT`, and `DELETE` operations used
+      to perform the get, update, and delete tasks, respectively.
+    get:
+      summary: Get a Item
+      description: Gets the details of a single instance of a `Item`.
+      operationId: getItem
+      responses:
+        200:
+          description: Successful response - returns a single `Item`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        500:
+          description: Error response - returns an object of `Error` entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update a Item
+      description: Updates an existing `Item`.
+      operationId: updateItem
+      requestBody:
+        description: Updated `Item` information.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+        required: true
+      responses:
+        202:
+          description: Successful response.
+        500:
+          description: Error response - returns an object of `Error` entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a Item
+      description: Deletes an existing `Item`.
+      operationId: deleteItem
+      responses:
+        204:
+          description: Successful response.
+        500:
+          description: Error response - returns an object of `Error` entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    parameters:
+    - name: itemId
+      in: path
+      description: A unique identifier for a `Item`.
+      required: true
+      schema:
+        type: string
+components:
+  schemas:
+    Item:
+      title: Root Type for Item
+      description: Item object
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+      example: |-
+        {
+            "id": "12323-3cxce-erers",
+            "name": "Buy Bananas",
+            "description": "Buy Bananas at Tesco"
+        }
+    Error:
+      title: Root Type for Error
+      description: Error Object
+      type: object
+      properties:
+        code:
+          description: Error Code
+          type: string
+        message:
+          description: Error Message
+          type: string
+        extra:
+          description: Error Extra value
+          type: string
+      example: |-
+        {
+            "code": "ERR001",
+            "message": "Error from Server",
+            "extra": "Extra error message"
+        }
+tags:
+- name: todo
+  description: Todo App tag
