@@ -1,6 +1,6 @@
 {
   "gitbook": "3.x.x",
-	"title": "Contract-First workshop",
+	"title": "API-First workshop",
   "plugins": ["prism", "-highlight", "github", "ga"],
 	"pluginsConfig": {
 		"fontSettings": {

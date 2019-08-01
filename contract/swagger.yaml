@@ -38,7 +38,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
-      summary: Create a Item
+      summary: Create an Item
       description: Creates a new instance of a `Item`.
       operationId: createItem
       requestBody:
@@ -60,10 +60,10 @@ paths:
   /items/{itemId}:
     summary: Path used to manage a single Item.
     description: The REST endpoint/path used to get, update, and delete single instances
-      of an `Item`.  This path contains `GET`, `PUT`, and `DELETE` operations used
+      of an `Item`. This path contains `GET`, `PUT`, and `DELETE` operations used
       to perform the get, update, and delete tasks, respectively.
     get:
-      summary: Get a Item
+      summary: Get an Item
       description: Gets the details of a single instance of a `Item`.
       operationId: getItem
       responses:
@@ -80,7 +80,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     put:
-      summary: Update a Item
+      summary: Update an Item
       description: Updates an existing `Item`.
       operationId: updateItem
       requestBody:
@@ -100,8 +100,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     delete:
-      summary: Delete a Item
-      description: Deletes an existing `Item`.
+      summary: Delete an Item
+      description: Delete an existing `Item`.
       operationId: deleteItem
       responses:
         204:

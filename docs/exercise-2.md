@@ -1,60 +1,75 @@
 # Introduction
 
-In this exercise we will learn how we can create and test the API contract using [Postman]() and [Newman](). This exercise will step you through how to create a mock server and run pur integeration tests against the various endpoints.
+In this exercise we will learn how we can create and test the API contract using [Postman](https://www.getpostman.com) and [Newman](https://github.com/postmanlabs/newman). This exercise will step you through how to create a mock server and run integration tests against the various endpoints.
 
 ## Step 1 - Locate completed contract
 
-For this exercise, you will require a complete and valid swagger doc. If you have completed the steps in [exercise-1](/docs/exercise-1.md) continue on to the next step.
+For this exercise, you will require a complete and valid OpenAPI spec. If you have completed the steps in [exercise-1](/docs/exercise-1.md), continue on to the next step.
 
-If not you can download a completed version of the the contract [here.](https://github.com/primashah/workshop/blob/master/contract/swagger.yaml) Be sure to download the file to the directory you are working in.
+If not, you can download the completed version of the the contract [here](https://github.com/primashah/workshop/blob/master/contract/swagger.yaml). Be sure to download the file to the directory you are working in.
 
 ## Step 2 - Postman, OpenAPI and a Contract
 
-Now that you have the complete swagger doc, open Postman, in the top left hand corner of the application window, select _**Import**_ button to reveal the file explorer.
+Now that you have the complete OpenAPI spec, open Postman, in the top left corner of the application window, click **Import** button to reveal the file explorer.
 
 ![File Importer](/docs//images/exercise-2/postman-file-importer.png)
 
-Select choose files and navigate the to the directory were you swagger file is save.
+Click **Choose Files** and navigate the to the directory were your OpenAPI file is saved.
 
-If the swagger file is vaild and can be parsed, a new collection with the label `ToDo List` will appear in Postman's collections sidebar.
+If the OpenAPI file is valid and can be parsed, a new collection with the label _ToDo List_ will appear in Postman's collections sidebar.
 
 ## Step 3 - Exploring our imported API Spec
 
-In Postmans collection explorer, collapse the ToDo List collection and any subdirectories and examine the contents.
+In Postman's collection explorer, expand the _ToDo List_ collection and any subdirectories and examine the contents.
 
 ![Collection Explorer](/docs//images/exercise-2/postman-imported-coll.png)
 
-You should find 5 endpoints, ranging from `GET` an item to `DELETE` and item. Lets explore one of these items in more detail.
+You should find 5 endpoints, defined previously in Apicurio studio. Let's explore one of these items in more detail.
 
-Select the item with label `List All Items`. This is a `GET HTTP` Operation that will return all valid `Todo` items in a array.
+Select the item with label _List All Items_. This is a `GET` HTTP operation that will return an array of to-do items.
 
-To the right hand corner, we can see examples of our response. Click `Examples(2)` and select an item from the list to reveal example responses.
+In the top right corner, we can see examples of our response. Click _Examples(2)_ and select an item from the list to reveal example responses.
 
 ![Example Response](/docs//images/exercise-2/postman-response-example.png)
 
 ## Step 4 - Setting up our Mock Server
 
-We will to setup a server to run our tests. Luckily, Postman offer us a [mock server](https://learning.getpostman.com/docs/postman/mock_servers/setting_up_mock/) out of the box. This provides the ability to run the tests and validate the api schema. Another advantage is that we can run a mock server and allow the developers to retrieve mocked responses until the backend is implemented.
+We will set up a server to run our tests. Luckily, Postman offers us a [mock server](https://learning.getpostman.com/docs/postman/mock_servers/setting_up_mock/) out of the box. This provides the ability to run the tests and validate the API schema. Another advantage is that we can run a mock server and allow the developers to retrieve mocked responses until the back end is implemented.
 
-Let's setup a mock server for our `Todo` collection in Postman.
+The responses that the mock server will return are based on the Examples configured for the endpoints in the collection.
 
-1. Select the parent row of the ToDo List collection from the collection explorer to the left of the window.
+Let's set up a mock server for our To-Do collection in Postman.
+
+1. Select the parent row of the _ToDo List_ collection from the collection explorer to the left of the window.
    ![Mock Server - 1](/docs//images/exercise-2/mock-server-1.png)
-2. Select the right facing arrow to expand collection settings. Navigate to the `more button` and select `Mock Collection` from the options.
+2. Select the right facing arrow to expand collection settings. Click the **...** button and select _Mock Collection_ from the options.
    ![Mock Server - 2](/docs//images/exercise-2/mock-server-2.png)
-3. The next window will present you with options to configure the server, select the `Create` button to create mock server.
+3. The next window will present you with options to configure the server, enter the title and click the **Create** button to create a mock server.
    ![Mock Server - 3](/docs//images/exercise-2/mock-server-3.png)
+4. The next screen will show the URL of the created mock server. Click on the link and copy the URL from the URL field. You can also get the link later by clicking again on the right arrow and going to _Mocks_ tab. The link will look like: `https://66e2a15a-f50e-4292-b753-91084abf70c0.mock.pstmn.io`.
 
 ## Step 5 - Testing, testing testing!
 
-Now that we have explored POstmanand setup our mock server. Next we will adds ome basic test to validate our api contract.
+Now that we have explored Postman and set up our mock server, we will add some basic tests to validate our API contract.
 
-#### GET - List All
+But first we'll need to configure an [Environment](https://learning.getpostman.com/docs/postman/environments_and_globals/manage_environments/) for the tests and set the variable `{{"{{ baseUrl }}"}}` that is created automatically for each endpoint on import to the value of our mock server.
 
-First up, the List All endpoint. First, we will update the success response. As described ealrier, navigate to the `Examples` and select the Succsss Response to reveal editor.
+**Note:** in some versions of Postman this environment is created automatically on creating a mock server.
 
-1. In the example request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-2. Copy and paste the array of todo items below, into the Example response body editor. Save and return to request window.
+* Click on the gear icon in the top-right corner to open the Manage Environments pop-up.
+* Click **Add**
+* Enter a name for the new environment, e.g. _ToDo List_
+* Add a variable `baseUrl` with the Initial Value set to the mock server URL (e.g. `https://66e2a15a-f50e-4292-b753-91084abf70c0.mock.pstmn.io`).
+* Click **Add**, confirm that the environment has been created, and close the window.
+* From the drop-down list (that shows `No Environment` or the name of another environment) select your newly created _ToDo List_ environment.
+
+#### GET - List All Items
+
+First, we will update the success response of the _List All Items_ endpoint. 
+
+1. Navigate to the _Examples_ and select the _Successful Response_ to reveal the editor.
+
+2. Copy and paste the array of to-do items below, into the example response body editor. Click **Save Example** and return to request window.
 
 ```json
 [
@@ -71,9 +86,7 @@ First up, the List All endpoint. First, we will update the success response. As 
 ]
 ```
 
-3. Select the test tab and paste the sample code below.
-4. In the request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-
+3. Select the _Tests_ tab and paste the sample code below:
 ```javascript
 var body = JSON.parse(responseBody);
 var schema = {
@@ -91,14 +104,17 @@ pm.test("Response body matches expected schema", function() {
 });
 ```
 
-5. Verify the tests is running by selecting the `Send` button.
+4. Verify the tests are running by clicking the **Send** button.
 
-#### POST - Create Todo Item
+Note that as we have 2 examples: one with successful `200` status code, and another one with `500` error code, the mock server may send the error one.
+You can add `x-mock-response-code` header to the request with the value of the status code of the example you want to be returned. You can add it in the _Headers_ tab of the request. Alternatively, you can delete the error response example.
+Read more about how to mock with examples in [Postman documentation](https://learning.getpostman.com/docs/postman/mock_servers/mocking_with_examples/).
 
-Next we want to confirm we have created a todo item successfully. We do this by testing the status code retunred is that as decribed in the schema. First, we wil l update the example success response.
+#### POST - Create an Item
 
-1. In the example request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-2. In the example request body, paste the object below. This will be our post body. Save and return to request tab
+Next we want to confirm we have created a to-do item successfully. We do this by testing the status code returned is as decribed in the schema. First, we will update the example success response.
+
+1. In the example request body, paste the object below. This will be our POST body. Save and return to the request tab.
 
 ```json
 {
@@ -108,7 +124,7 @@ Next we want to confirm we have created a todo item successfully. We do this by 
 }
 ```
 
-3. Next add a test to check the response statusCode is as expected. Copy & paste snippet below into the test tab.
+2. Next add a test to check the response statusCode is as expected. Copy & paste snippet below into the test tab.
 
 ```javascript
 pm.test("Return a successful status code", function() {
@@ -116,16 +132,14 @@ pm.test("Return a successful status code", function() {
 });
 ```
 
-4. In the request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-5. Verify tests by selecting the `Send` button.
+3. Verify tests by selecting the **Send** button.
 
-#### GET - Get Item
+#### GET - Get an Item
 
-For this GET request, an `itemId` is passed as a param and a single object is returned. We will use our tests to validate the schema of the response and the expected statusCode. As with the previous intrustions, navigate tot he `Examples` tab for this request and open the editor.
+For this GET request, an `itemId` is passed as a parameter and a single object is returned. We will use our tests to validate the schema of the response and the expected status code. As with the previous intrustions, navigate to the `Examples` tab for this request and open the editor.
 
-1.  In the example request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-2.  In the example request url/address bar, replace the `<string>` with `1234`.
-3.  In the example request body, paste the object below, save chnages and close window.
+1.  In the example request URL/address bar, replace the `<string>` with `1234`.
+2.  In the example request body, paste the object below, click **Save Example** and close the window to go back to the request tab.
 
 ```json
 {
@@ -135,8 +149,8 @@ For this GET request, an `itemId` is passed as a param and a single object is re
 }
 ```
 
-4. In the `params` set the value of `itemId` to `1234`.
-5. Now add the test below to the tests tab. Save changes.
+4. In the _Params > Path Variables_ set the value of `itemId` to `1234`.
+5. Now add the test below to the _Tests_ tab. Save changes.
 
 ```javascript
 var body = JSON.parse(responseBody);
@@ -163,14 +177,13 @@ pm.test("Response body matches expected schema", function() {
 });
 ```
 
-6. In the request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-7. Verify tests by selecting the `Send` button.
+6. Verify tests by clicking the **Send** button.
 
-#### PUT - Update Item
+#### PUT - Update an Item
 
-1. In the example request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-2. In the example request body, paste the sample request object below, save changes and close window.
-3. In the `params` set the value of `itemId` to `1234`.
+1. In the example request URL/address bar, replace the `<string>` with `1234`.
+2. In the example request body, paste the object below, click **Save Example** and close the window to go back to the request tab.
+3. In the _Params > Path Variables_ set the value of `itemId` to `1234`.
 4. In the request body tab paste the object below.
 
 ```json
@@ -181,7 +194,7 @@ pm.test("Response body matches expected schema", function() {
 }
 ```
 
-5.  Now add the test below to the tests tab. Save changes.
+4.  Now add the test below to the tests tab. Save changes.
 
 ```javascript
 pm.test("Returns status code of 202", function() {
@@ -189,15 +202,14 @@ pm.test("Returns status code of 202", function() {
 });
 ```
 
-6. In the request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-7. Verify tests by selecting the `Send` button.
+5. Verify tests by selecting the **Send** button.
 
 #### DELETE - Delete Item
 
-1. In the example request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-2. In the example request url/address bar, replace the `:itemId` to `1234`.
-3. Save a close editor, head back to request tab.
-4. In the `params` set the value of `itemId` to `1234`.
+1. In the example request URL/address bar, replace the `<string>` with `1234`.
+2. Change the Status to `204 No Content`.
+3. Click **Save Example** and close the window to go back to the request tab.
+4. In the _Params > Path Variables_ set the value of `itemId` to `1234`.
 
 ```javascript
 pm.test("Returns status code of 204", function() {
@@ -205,39 +217,38 @@ pm.test("Returns status code of 204", function() {
 });
 ```
 
-5. In the request url/address bar, replace the `{{ baseUrl }}` with `{{ url }}`.
-6. Verify tests by selecting the `Send` button.
+5. Verify tests by selecting the **Send** button.
 
 ## Step 6 - The CLI, Newman and our Tests
 
-Ok so up to now we have manually verified our test against the schema by selecting the `Send` button for each request. In this section we are going to export our postman collection and run our tests in the command line using a tool called [Newman](https://learning.getpostman.com/docs/postman/collection_runs/command_line_integration_with_newman/).
+OK, so up to now we have manually verified our test against the schema by clicking the **Send** button for each request. In this section we are going to export our Postman collection and run our tests in the command line using a tool called [Newman](https://learning.getpostman.com/docs/postman/collection_runs/command_line_integration_with_newman/).
 
 #### Exporting the Postman collections
 
 1. From the collection explorer, expand the collection settings pane.
-2. Select the `more` butotn to reveal hidden menu.
-3. Select `Export` from the options.
-4. In the next window, select the 3rd option, `Collection v2.1`.
-5. Add a new directory to the root of your working directory, named `postman`
-6. Export collection to the the `postman` directory.
+2. Click the **...** button to reveal the hidden menu.
+3. Select _Export_ from the options.
+4. In the next window, select the 3rd option, _Collection v2.1 (recommended)_ and click **Export**.
+5. Add a new directory to the root of your working directory, named `postman`.
+6. Export collection to the the `postman` directory, change the file name to `collection.json`.
 
 #### Exporting the Postman environment
 
-1. Select the `Settings` icons from the top right.
-2. Find the `ToDo List` environment config and sleect the export icon.
-3. Export environment config to the the `postman` directory.
+1. Click the settings "gear" icon in the top right corner.
+2. Find the _ToDo List_ environment config and click the _Download Environment_ (arrow pointing down) icon.
+3. Export the environment config to the the `postman` directory, change the filename to `environment.json`.
 
 #### Installing Newman
 
 1. Open a command line application of your choice.
-2. Navigate to the working diretory
-3. Install newman via npm
+2. Navigate to the working directory.
+3. Install `newman` via npm.
 
 ```bash
 npm i -g newman
 ```
 
-4. In the command line enter te folowiing command to run the tests.
+4. In the command line enter the following command to run the tests:
 
 ```bash
 newman run ./postman/collection.json -e ./postman/environment.json
